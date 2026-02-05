@@ -1,0 +1,7 @@
+// Beğeni tip tanımları
+export interface Like {
+  id: number;
+  userId: number;
+  postId: number;
+  createdAt: Date;
+}
