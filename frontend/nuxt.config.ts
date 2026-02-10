@@ -17,6 +17,11 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/eslint'
   ],
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE
+    }
+  },
   nitro: {
     devProxy: {
       '/api': {
