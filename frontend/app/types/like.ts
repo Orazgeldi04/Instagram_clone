@@ -1,4 +1,4 @@
-// Beğeni tip tanımları
+
 export interface Like {
   id: number;
   userId: number;

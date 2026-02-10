@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-gray-50">
     <!-- Profile Header -->
     <div class="bg-white border-b border-gray-300">
       <div class="max-w-4xl mx-auto px-4 py-8">
@@ -27,7 +27,7 @@
                 <p class="text-gray-600">@{{ user?.username }}</p>
               </div>
               
-              <div class="flex gap-2" v-if="isCurrentUser">
+              <div class="flex gap-2">
                 <button 
                   @click="showEditModal = true"
                   class="px-4 py-1.5 border border-gray-300 rounded text-sm font-medium hover:bg-gray-50"
@@ -39,14 +39,6 @@
                 </button>
                 <button class="px-4 py-1.5 border border-gray-300 rounded text-sm font-medium hover:bg-gray-50">
                   ...
-                </button>
-              </div>
-              <div class="flex gap-2" v-else>
-                <button class="px-4 py-1.5 bg-blue-500 text-white rounded text-sm font-medium hover:bg-blue-600">
-                  Follow
-                </button>
-                <button class="px-4 py-1.5 border border-gray-300 rounded text-sm font-medium hover:bg-gray-50">
-                  Message
                 </button>
               </div>
             </div>
@@ -139,12 +131,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import EditProfileModal from '~/components/EditProfileModal.vue';
 import type { User } from '~/types/user';
 
-const route = useRoute();
-const { getMe, getUserById } = useApi();
+const { getMe } = useApi();
 const user = ref<User | null>(null);
 const showEditModal = ref(false);
 const activeTab = ref('posts');
@@ -159,24 +150,9 @@ const posts = ref([
   { id: 6, image: 'https://picsum.photos/300/300?random=6', caption: 'Food time' },
 ]);
 
-// Check if this is the current user's profile
-const isCurrentUser = computed(() => {
-  // In a real app, you would compare route.params.id with the current user's ID
-  // For now, we'll assume if we're on /profile/me or similar, it's the current user
-  return route.params.id === 'me'; // Adjust this condition based on your routing
-});
-
 onMounted(async () => {
   try {
-    if (isCurrentUser.value) {
-      user.value = await getMe();
-    } else {
-      // If viewing another user's profile, get their profile by ID
-      const userId = parseInt(route.params.id as string);
-      if (!isNaN(userId)) {
-        user.value = await getUserById(userId);
-      }
-    }
+    user.value = await getMe();
   } catch (error) {
     console.error('Failed to load profile:', error);
   }
