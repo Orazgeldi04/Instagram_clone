@@ -1,3 +1,3 @@
 <template>
-  <div class=" h-2">hello</div>
+  <slot></slot>
 </template>
