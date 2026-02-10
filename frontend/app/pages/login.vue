@@ -44,54 +44,10 @@
   <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <div class="bg-white py-8 px-10 border border-gray-300">
-        <!-- Logo -->
         <div class="text-center mb-8">
           <h1 class="text-5xl font-serif italic">Instagram</h1>
         </div>
-
-        <!-- Error Message -->
-        <div v-if="errorMessage" class="mb-4 p-3 bg-red-50 text-red-700 text-sm rounded-md">
-          {{ errorMessage }}
-        </div>
-
-        <!-- Login Form -->
-        <form class="space-y-4" @submit.prevent="handleLogin">
-          <div>
-            <input
-              id="email"
-              v-model="formData.email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-              placeholder="Telefon numarası, e-posta veya kullanıcı adı"
-              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-sm text-xs placeholder-gray-500 bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:bg-white"
-            />
-          </div>
-
-          <div>
-            <input
-              id="password"
-              v-model="formData.password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
-              placeholder="Şifre"
-              class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-sm text-xs placeholder-gray-500 bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 focus:bg-white"
-            />
-          </div>
-
-          <div class="pt-2">
-            <button
-              type="submit"
-              :disabled="loading"
-              class="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors"
-            >
-              {{ loading ? 'Giriş Yapılıyor...' : 'Giriş Yap' }}
-            </button>
-          </div>
-        </form>
+      
 
         <div class="relative my-6">
           <div class="absolute inset-0 flex items-center">
@@ -173,6 +129,7 @@
       <p class="text-xs text-gray-500">© 2024 Instagram from Meta</p>
     </footer>
   </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -198,5 +155,3 @@ import { useAuthStore } from '~/store/user';
 </style>
 
 
-// post. api/auth/login
-//email , password

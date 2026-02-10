@@ -245,7 +245,7 @@ const registerUser = async (data: RegisterData): Promise<AuthResponse> => {
     });
 
     return response;
-  } catch (error: any) {
+  } catch (error) {
     console.error('Registration error:', error);
     return {
       success: false,
@@ -409,7 +409,7 @@ const handleSubmit = async () => {
     } else {
       errorMessage.value = response?.message || 'Registration failed. Please try again.'
     }
-  } catch (error: any) {
+  } catch (error) {
     console.error('Registration error:', error)
     errorMessage.value = error?.message || 'Registration failed. Please try again.'
   } finally {
